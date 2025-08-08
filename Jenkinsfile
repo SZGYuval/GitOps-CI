@@ -1,4 +1,5 @@
 pipeline {
+
     agent any
     environment {
       NAME = "python-app"
@@ -21,8 +22,10 @@ pipeline {
         }
 
         stage('Push Image') {
-            withDockerRegistry(credentialsId: 'docker-hub-creds', url: '') {
+            steps {
+                withDockerRegistry(credentialsId: 'docker-hub-creds', url: '') {
                 sh  "docker image push ${IMAGE_REPO}/${NAME}:${VERSION}"
+                }
             }
         }
     }
