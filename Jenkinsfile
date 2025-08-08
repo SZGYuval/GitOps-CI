@@ -56,6 +56,11 @@ pipeline {
             }
         }
 
+        stage('Giving jenkins permissions') {
+            steps {
+                sh "chown -R jenkins:jenkins /var/lib/jenkins/workspace/GitOps-Pipeline/GitOps-CICD"
+            }
+        }
         stage('Pushing Changes') {
             steps {
                 dir("GitOps-CICD") {
