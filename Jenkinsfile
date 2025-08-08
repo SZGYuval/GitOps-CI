@@ -5,6 +5,7 @@ pipeline {
       NAME = "python-app"
       VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
       IMAGE_REPO = "szgyuval123/gitops-repo"
+      GIT_TOKEN = credentials('github-creds')
     }
 
     stages {
@@ -51,6 +52,18 @@ pipeline {
             steps {
                 dir("GitOps-CICD") {
                     sh 'sed -i "s|szgyuval123.*|szgyuval123/gitops-repo:python-app-8-006154380cc9f148996d0e7424a097e581c6798f|" deployment.yaml'
+                }
+            }
+        }
+
+        stage('Pushing Changes') {
+            steps {
+                dir("GitOps-CICD") {
+                    sh 'git config --global --add safe.directory /var/lib/jenkins/workspace/GitOps-Pipeline/GitOps-CICD'
+                    sh 'git remote set-url origin https:${GIT_TOKEN}//github.com/SZGYuval/GitOps-CICD'
+                    sh 'git add .'
+                    sh 'git commit -m "Update image version for Build - ${VERSION}"'
+                    sh 'git push origin master'
                 }
             }
         }
