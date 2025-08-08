@@ -1,9 +1,9 @@
 pipeline {
-
     agent any
+
     environment {
       NAME = "python-app"
-      VERSION = "{env.BUILD_ID}-${env.GIT_COMMIT}"
+      VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
       IMAGE_REPO = "szgyuval123/gitops-repo"
     }
 
