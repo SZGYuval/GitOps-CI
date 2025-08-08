@@ -28,5 +28,24 @@ pipeline {
                 }
             }
         }
+
+        stage('Clone/Pull Repo') {
+            steps {
+                script {
+                    if (fileExists('GitOps-CICD')) {
+                        echo 'Cloned repo already exists - Pulling latest changes'
+
+                        dir("GitOps-CICD") {
+                            sh 'git pull'
+                        }
+                    }
+                    else {
+                        echo 'Repo does not exists - Cloning the repo'
+                        sh 'git clone https://github.com/SZGYuval/GitOps-CICD'
+                    }
+                }
+            }
+        }
+
     }
 }
