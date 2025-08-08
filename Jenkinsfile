@@ -47,5 +47,12 @@ pipeline {
             }
         }
 
+        stage('Update manifest') {
+            steps {
+                dir("GitOps-CICD") {
+                    sh 'sed -i "s|szgyuval123.*|${IMAGE_REPO}:${NAME}-${VERSION}" deployment.yaml'
+                }
+            }
+        }
     }
 }
