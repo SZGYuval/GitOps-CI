@@ -37,7 +37,7 @@ pipeline {
                         echo 'Cloned repo already exists - Pulling latest changes'
 
                         dir("GitOps-CICD") {
-                            sh 'git pull'
+                            sh 'git pull https://github.com/SZGYuval/GitOps-CICD'
                         }
                     }
                     else {
