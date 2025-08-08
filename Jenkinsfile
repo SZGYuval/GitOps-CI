@@ -65,11 +65,11 @@ pipeline {
         stage('Pushing Changes') {
             steps {
                 dir("GitOps-CICD") {
-                    sh 'git config --global --add safe.directory /var/lib/jenkins/workspace/GitOps-Pipeline/GitOps-CICD'
-                    sh 'git remote set-url origin https:${GIT_TOKEN}@github.com/SZGYuval/GitOps-CICD'
-                    sh 'git add .'
+                    sh "git config --global --add safe.directory /var/lib/jenkins/workspace/GitOps-Pipeline/GitOps-CICD"
+                    sh "git remote set-url origin https:${GIT_TOKEN}@github.com/SZGYuval/GitOps-CICD"
+                    sh "git add ."
                     sh 'git commit -m "Update image version for Build - ${VERSION}"'
-                    sh 'git push origin master'
+                    sh "git push origin master"
                 }
             }
         }
