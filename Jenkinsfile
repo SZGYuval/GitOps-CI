@@ -58,7 +58,7 @@ pipeline {
 
         stage('Giving jenkins permissions') {
             steps {
-                sh "chown -R jenkins:jenkins /var/lib/jenkins/workspace/GitOps-Pipeline/GitOps-CICD"
+                sh "sudo chown -R jenkins:jenkins /var/lib/jenkins/workspace/GitOps-Pipeline/GitOps-CICD"
             }
         }
         stage('Pushing Changes') {
