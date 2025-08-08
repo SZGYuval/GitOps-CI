@@ -17,7 +17,7 @@ pipeline {
 
         stage('Tests') {
             steps {
-                echo "Tests should be added"
+                echo "Tests should be added!"
             }
         }
 
