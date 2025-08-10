@@ -10,6 +10,7 @@ pipeline {
       VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
       IMAGE_REPO = "szgyuval123/gitops-repo"
       GIT_TOKEN = credentials('github-creds')
+      PROJECT_NAME = "${JOB_NAME}"
     }
 
     stages {
@@ -62,7 +63,7 @@ pipeline {
 
         stage('Giving jenkins permissions') {
             steps {
-                sh "sudo chown -R jenkins:jenkins /var/lib/jenkins/workspace/GitOps-Pipeline/GitOps-CICD"
+                sh "sudo chown -R jenkins:jenkins /var/lib/jenkins/workspace/${PROJECT_NAME}/GitOps-CICD"
             }
         }
 
