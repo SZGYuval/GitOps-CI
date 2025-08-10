@@ -35,6 +35,12 @@ pipeline {
             }
         }
 
+        stage('Creating Secret - CI stage') {
+            steps {
+                sh 'argocd-vault-plugin generate -c /root/vault.env - < secret.yaml | kubectl apply -f -'
+            }
+        }
+
         stage('Clone/Pull Repo') {
             steps {
                 script {
