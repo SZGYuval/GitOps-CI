@@ -37,7 +37,7 @@ pipeline {
 
         stage('Creating Secret - CI stage') {
             steps {
-                sh 'argocd-vault-plugin generate -c /var/lib/jenkins/avp/vault.env - < secret.yaml | kubectl apply -f -'
+                sh 'argocd-vault-plugin generate -c /var/lib/jenkins/avp/vault.env - < secret.yaml | kubectl apply -f - --kubeconfig /var/lib/jenkins/avp/config'
             }
         }
 
