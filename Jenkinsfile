@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        git 'Default'
+    }
+
     environment {
       NAME = "python-app"
       VERSION = "${env.BUILD_ID}-${env.GIT_COMMIT}"
